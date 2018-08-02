@@ -1,0 +1,73 @@
+<!-- This page includes the following elements: comment, !DOCTYPE, a, address, body, br, meta, nav -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Alec Avedisian">
+		<meta name="pid" content="A11599032">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Index</title>
+		<style>
+		@media print{
+			body{background-color:white; background-image:none; color: lightblue;}
+			#contentarea{width:100%;}
+		}
+		@font-face{
+			font-family:bn;
+			src: url(Aaargh.ttf);
+		}
+		* {
+			font-family:bn;
+		}
+		body{
+			background-color:lightblue;
+		}
+		a:link, a:visited{
+			background-color: lightblue;
+			color: black;
+			border: 2px solid blue;
+			text-align: center;
+			text-decoration: none;
+			display:inline-block;
+		}
+		a:hover, a:active {
+			background-color: blue;
+			color: white;
+		}
+		</style>
+	</head>
+	<body>
+		<h1> Index Page </h1>
+		<h2> Click on any link to take you to the corresponding page </h2>
+		<nav>
+			<a href="login.html"> Login Page </a> - 
+			<a href="issue1.html"> Issue Example </a> - 
+			<a href="addissue.html"> Add Issue </a> - 
+			<a href="issuelist.html"> Issue List </a><br><br>
+		</nav>
+		<nav>
+			<a href="signup.html"> Signup Page </a> -
+			<a href="editissue.html"> Edit Issue </a><br><br>
+		</nav>
+		<address>
+			Written by Alec Avedisian<br>
+			PID: A11599032<br>
+		</address>
+		<br><br>
+		<div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">
+		Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by 
+		<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+		<script>
+			self.addEventListener('install', event =>{
+				event.waitUntil(
+					caches.open('db1')
+					.then(cache => cache.addAll([
+						'offline.html'
+						]))
+					);
+			});
+		</script>
+
+	</body>
+</html>	

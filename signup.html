@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+	<head>		
+		<meta charset="UTF-8">
+		<meta name="author" content="Alec Avedisian">
+		<meta name="pid" content="A11599032">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Sign Up</title>
+		<style>
+		@media print{
+			body{background-color:white; background-image:none; color: lightblue;}
+			#contentarea{width:100%;}
+		}
+		@font-face{
+			font-family:bn;
+			src: url(Aaargh.ttf);
+		}
+		* {
+			font-family:bn;
+		}
+		body{
+			background-color:lightblue;
+		}
+		a:link, a:visited{
+			background-color: lightblue;
+			color: black;
+			border: 2px solid blue;
+			text-align: center;
+			text-decoration: none;
+			display:inline-block;
+		}
+		a:hover, a:active {
+			background-color: blue;
+			color: white;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Sign up for an account with AIT</h1>
+
+		<form action="issuelist.html">
+			Username:
+			<input type="text" name="user" placeholder="Username"><br><br>
+			Email Address:
+			<input type="text" name="email" placeholder="Email"><br><br>
+			Password:
+			<input type="Password" name="pass" placeholder="Password"><br><br>
+			Confirm Password:
+			<input type="Password" name="pass" placeholder="Confirm"><br><br>
+			<input type="submit" value="Sign up">
+		</form><br>
+
+		<script>
+			self.addEventListener('install', event =>{
+				event.waitUntil(
+					caches.open('db1')
+					.then(cache => cache.addAll([
+						'offline.html'
+						]))
+					);
+			});
+		</script>
+
+	<br><br><sub> Lost? <a href="index.html"> Back to the Index </a> </sub>
+	</body>
+</html>

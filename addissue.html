@@ -1,0 +1,80 @@
+<!-- This page includes the following elements: article, p, canvas, script, del, ins, form, label, option -->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Alec Avedisian">
+		<meta name="pid" content="A11599032">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Add Issue</title>
+		<style>
+		@media print{
+			body{background-color:white; background-image:none; color: lightblue;}
+			#contentarea{width:100%;}
+		}
+		@font-face{
+			font-family:bn;
+			src: url(Aaargh.ttf);
+		}
+		* {
+			font-family:bn;
+		}
+		body{
+			background-color:lightblue;
+		}
+		a:link, a:visited{
+			background-color: lightblue;
+			color: black;
+			border: 2px solid blue;
+			text-align: center;
+			text-decoration: none;
+			display:inline-block;
+		}
+		a:hover, a:active {
+			background-color: blue;
+			color: white;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Add Issue</h1>
+		<form action="issue">
+			Issue Title <br>
+			<input type="text" name="title"><br><br>
+			Issue Type <br>
+			<select name="type">
+				<option value="none">N/A</option>
+				<option value="feature">Feature</option>
+				<option value="bug">Bug</option>
+				<option value="idk">Not Sure</option>
+			</select><br><br>
+			Description <br>
+			<input type="text" name="desc"><br><br>
+
+			<img src="upload.svg" style="width:45px; height:45px;">
+			Issue Attachment <br>
+			<input type="file" name="file"> <br><br>
+			<input type="button" onclick="location.href='issuelist4add.html'; addIss()" value="Submit Issue">
+			<input type="reset">
+		</form><br>
+
+		<script>
+			function addIss(){
+
+				var myIss = {"iname": document.getElementById("title"), "itype": document.getElementById("type"), "idesc": document.getElementById("desc")};
+				var iJSON = JSON.stringify(myIss);
+				window.location = "issue_db.php?x=" + iJSON;
+			}
+			self.addEventListener('install', event =>{
+				event.waitUntil(
+					caches.open('db1')
+					.then(cache => cache.addAll([
+						'offline.html'
+						]))
+					);
+			});
+		</script>
+
+		<br><br><sub> Lost? <a href="index.html"> Back to the Index </a> </sub>
+	</body>
+</html>

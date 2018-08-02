@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="author" content="Alec Avedisian">
+		<meta name="pid" content="A11599032">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Issue List</title>
+		<style>
+		@media print{
+			body{background-color:white; background-image:none; color: lightblue;}
+			#contentarea{width:100%;}
+		}
+		@font-face{
+			font-family:bn;
+			src: url(Aaargh.ttf);
+		}
+		* {
+			font-family:bn;
+		}
+		body{
+			background-color:lightblue;
+		}
+		a:link, a:visited{
+			background-color: lightblue;
+			color: black;
+			border: 2px solid blue;
+			text-align: center;
+			text-decoration: none;
+			display:inline-block;
+		}
+		a:hover, a:active {
+			background-color: blue;
+			color: white;
+		}
+		table, th, td {
+			border: 1px solid black;
+		}
+		</style>
+	</head>
+	<body>
+		<h1> Issue List </h1>
+		<hr>
+		<sub><a href="addissue.html">Add Issue +</a></sub><br>
+
+		<p id="issList">
+			<table><tr><th>Issue Id</th><th>Issue Name</th><th>Issue Type</th><th>Issue Description</th></tr></table>
+		</p>
+
+		Show resolved issues: <input type="checkbox" id="unres" onclick="show()">
+		<script>
+			var index = "";
+			var temp = "";
+			var pop = "";
+			var issu = { "table": "allIssues" };
+			var db = JSON.stringify(issu);
+			var xmlh = new XMLHttpRequest();
+			xmlh.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					temp = JSON.parse(this.responseText);
+					pop += "<tr><th>Issue Id</th><th>Issue Name</th><th>Issue Type</th><th>Issue Description</th></tr>"
+					for(index in temp){
+						pop += "<tr><td>" + temp.name + "</td><td>" + temp.url + "</td><td>" + temp.type + "</td><td>" + temp.desc + "</td></tr>";
+					}
+					document.getElementById(issList).innerHTML += pop + "</table>";
+				}
+			}
+
+			function show(){
+				var cBox = document.getElementById("unres");
+				if(cBox.checked == true){
+					row3.style.display = "";
+				} 
+				else{
+					row3.style.display = "none";
+				}
+			}
+
+			xmlh.open("POST", "issue_db.php", true);
+			xmlh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlh.send("x=" + db);
+			self.addEventListener('install', event =>{
+				event.waitUntil(
+					caches.open('db1')
+					.then(cache => cache.addAll([
+						'offline.html'
+						]))
+					);
+			});
+		</script>
+
+		<br><br><sub> Lost? <a href="index.html"> Back to the Index </a> </sub>
+	</body>
+</html>
